@@ -33,7 +33,6 @@ public class AppointmentService {
         }
     }
 
-
     public Integer delete(Integer id) {
         try {
             appointmentRepository.deleteById(id);

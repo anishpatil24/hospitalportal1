@@ -9,7 +9,8 @@ public class AppointmentDto {
     private String doctorname;
     private Date date;
 
-    public AppointmentDto(){}
+    public AppointmentDto() {
+    }
 
     public Integer getId() {
         return id;

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoginRepository extends CrudRepository<Login, Integer> {
 
-
     @Query("Select s from  Login s where s.username=:username")
     Login findByUserName(@Param("username") String username);
 

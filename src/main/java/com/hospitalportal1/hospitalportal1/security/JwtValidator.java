@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class JwtValidator {
     private String secret = "secretkey";
 
-    public JwtUser  validate(String token) {
+    public JwtUser validate(String token) {
 
         JwtUser jwtUser = null;
         try {
@@ -18,16 +18,13 @@ public class JwtValidator {
                     .setSigningKey(secret)
                     .parseClaimsJws(token)
                     .getBody();
-             jwtUser = new JwtUser();
+            jwtUser = new JwtUser();
             jwtUser.setUsername(body.getSubject());
             jwtUser.setId(Integer.parseInt((String) body.get("id")));
             jwtUser.setUsertype((String) body.get("usertype"));
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
-
         return jwtUser;
-
     }
 }

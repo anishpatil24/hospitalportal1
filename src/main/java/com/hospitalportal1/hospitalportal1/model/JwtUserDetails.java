@@ -12,11 +12,12 @@ public class JwtUserDetails implements UserDetails {
     private String token;
     private Integer id;
     private Collection<? extends GrantedAuthority> authorities;
+
     public JwtUserDetails(String userName, Integer id, String token, List<GrantedAuthority> grantedAuthorities) {
-        this.userName=userName;
-        this.id=id;
-        this.token=token;
-        this.authorities=grantedAuthorities;
+        this.userName = userName;
+        this.id = id;
+        this.token = token;
+        this.authorities = grantedAuthorities;
     }
 
     @Override

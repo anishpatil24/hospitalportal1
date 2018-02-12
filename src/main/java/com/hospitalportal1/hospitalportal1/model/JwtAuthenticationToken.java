@@ -4,6 +4,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken {
     private String token;
+
     public JwtAuthenticationToken(String token) {
         super(null, null);
         this.token = token;
@@ -19,7 +20,7 @@ public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken 
 
     @Override
     public Object getCredentials() {
-         return null;
+        return null;
     }
 
     @Override

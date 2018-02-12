@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DoctorRepository extends CrudRepository<Doctor,Integer>{
+public interface DoctorRepository extends CrudRepository<Doctor, Integer> {
 
     @Query(value = "Select s from Doctor s where s.id=:id")
     Doctor findByIdDoctor(@Param("id") Integer id);

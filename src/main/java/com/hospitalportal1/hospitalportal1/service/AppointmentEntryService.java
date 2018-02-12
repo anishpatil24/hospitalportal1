@@ -25,12 +25,8 @@ public class AppointmentEntryService {
         try {
             Date d = new Date(date);
             java.sql.Date sDate = new java.sql.Date(d.getTime());
-            PatientDto patientDto = new PatientDto();
             Patient patient = patientRepository.findOneById(idPatient);
-//            patientDto.setId(patient.getId());
-//            patientDto.setPatientname(patient.getPatientname());
-//            patientDto.setRegistrationStatus(patient.getRegistrationstatus());
-            String patientname = patientDto.getPatientname();
+            String patientname = patient.getPatientname();
             Doctor doctor = doctorRepository.findByIdDoctor(idDoctor);
             String doctorname = doctor.getDoctorname();
             Appointment appointment = new Appointment();
