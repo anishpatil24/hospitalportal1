@@ -5,10 +5,7 @@ import com.hospitalportal1.hospitalportal1.service.AppointmentEntryService;
 import com.hospitalportal1.hospitalportal1.service.AppointmentServiceForHospital;
 import com.hospitalportal1.hospitalportal1.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class HospitalController {
     @Autowired
     DoctorService doctorService;
 
-    @RequestMapping(value = "/rest/fetchAllAppointmentsForHospital", method = RequestMethod.GET)
+    @RequestMapping(value = "/rest/fetchAllAppointmentsForHospital", method = RequestMethod.POST)
     public List<Appointment> handleFetchAllAppointments(@RequestParam Integer id) {
         try {
             List<Appointment> appointment = appointmentServiceForHospital.fetchAllAppointments(id);
@@ -32,7 +29,7 @@ public class HospitalController {
         }
     }
 
-    @RequestMapping(value = "/rest/fetchAllAppointmentsForHospitalDate", method = RequestMethod.GET)
+    @RequestMapping(value = "/rest/fetchAllAppointmentsForHospitalDate", method = RequestMethod.POST)
     public List<Appointment> handleFetchAllAppointmentsDate(@RequestParam Integer id, @RequestParam String date) {
         try {
             List<Appointment> appointment = appointmentServiceForHospital.fetchAllAppointmentsDate(id,date);
@@ -42,7 +39,7 @@ public class HospitalController {
         }
     }
 
-    @RequestMapping(value = "/rest/fetchAllAppointmentsForDoctor", method = RequestMethod.GET)
+    @RequestMapping(value = "/rest/fetchAllAppointmentsForDoctor", method = RequestMethod.POST)
     public List<Appointment> handleFetchAllAppointmentsForDoctor(@RequestParam Integer id, @RequestParam String doctorname) {
         try {
             List<Appointment> appointment = appointmentServiceForHospital.fetchAllAppointmentsForDoctor(id, doctorname);
@@ -69,7 +66,7 @@ public class HospitalController {
     }
 
     @RequestMapping(value = "/rest/deleteDoctor", method = RequestMethod.DELETE)
-    public String handleDeleteDoctor(@RequestParam Integer id) {
+    public String handleDeleteDoctor(@RequestParam(value = "id") Integer id) {
         Integer deleted = doctorService.delete(id);
         if (deleted == 1)
             return "Successfully deleted";
@@ -77,7 +74,7 @@ public class HospitalController {
     }
 
     @RequestMapping(value = "/rest/cancelAppointmentForHospital", method = RequestMethod.DELETE)
-    public String handleCancelAppointment(@RequestParam Integer id) {
+    public String handleCancelAppointment(@RequestParam(value = "id") Integer id) {
         Integer isCancelled = appointmentServiceForHospital.cancel(id);
         if (isCancelled == 1)
             return "Successfully cancelled";

@@ -19,7 +19,7 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
             "s.date=:date", nativeQuery = true)
     List<Appointment> findAllAppointmentsDate(@Param("id") Integer id, @Param("date") java.sql.Date date);
 
-    @Query(value = "Select * from Appointment s where s.doctorname=(Select Doctor.doctorname from Doctor where Doctor.hospitalid=:id)", nativeQuery = true)
+    @Query(value = "Select * from Appointment s where s.doctorname IN (Select Doctor.doctorname from Doctor where Doctor.hospitalid=:id)", nativeQuery = true)
     List<Appointment> findAllAppointmentsForHospital(@Param("id") Integer id);
 
     @Query(value = "Select * from Appointment s where s.doctorname IN (Select Doctor.doctorname from Doctor where Doctor.hospitalid=:id) and s.date=:date", nativeQuery = true)

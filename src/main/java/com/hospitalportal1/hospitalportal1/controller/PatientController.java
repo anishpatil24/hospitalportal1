@@ -50,7 +50,7 @@ public class PatientController {
 
     @RequestMapping(value = "/rest/cancelAppointment", method = RequestMethod.DELETE)
     @ResponseBody
-    public String handleCancelAppointment(@RequestParam Integer id) {
+    public String handleCancelAppointment(@RequestParam(value = "id") Integer id) {
         Integer isCancelled = appointmentService.delete(id);
         if (isCancelled == 1)
             return "Successfully Cancelled";
